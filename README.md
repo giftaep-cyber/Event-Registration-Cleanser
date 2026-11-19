@@ -1,101 +1,122 @@
 # Event Registration Cleaner
 
-**CIT AI-Native Engineering Programme - Semester 1 - Assessment 5**  
-**Domain:** Events  
-**Application type:** Console-based Python program
+**CIT AI-Native Engineering Programme – Semester 1 – Assessment 5**
+**Domain:** Event Registration
+**Application Type:** Console-based Python Program
 
-## 1. What this project does
+## 1. Project Overview
 
-The program reads a CSV containing event-registration messages in different formats. The LLM copies five fields (`name`, `phone`, `email`, `year`, and `branch`) into JSON. Python then checks that the returned phone digits and email text really occur in the original entry, cleans the allowed formatting, validates every field, identifies duplicates after cleaning, and writes three reports.
+The Event Registration Cleaner processes CSV files containing event-registration messages in different formats.
 
-The LLM does not correct contact details. The event team must review `problems.csv` and contact every person whose registration needs fixing or is a duplicate.
+Gemini extracts five fields: `name`, `phone`, `email`, `year`, and `branch` into JSON format.
 
-## 2. Project files
+Python performs fact-checking, data cleaning, validation, duplicate detection, and report generation.
 
-| File | Purpose |
-|---|---|
-| `main.py` | Main console program, Gemini API call, fallback, cleaning, checking, duplicate detection, and report writing |
-| `registrations.csv` | Sample input with 24 registration entries |
-| `SYSTEM_PROMPT.txt` | Five-role system prompt with two examples |
-| `eval_harness.py` | Five-case evaluation harness |
-| `eval_results.txt` | Saved evaluation result |
-| `red_team_checks.py` | Three deterministic red-team checks |
-| `red_team_results.md` | Saved red-team result and interpretation |
-| `clean_list.csv` | Sample output: valid registrations only |
-| `problems.csv` | Sample output: entries needing fixes or marked duplicate |
-| `summary.txt` | Sample counts by status, branch, and year |
-| `SPECIFICATION.md` / `specification.pdf` | One-page project specification |
-| `JUDGMENT_FRAMEWORK.md` | Responsibility, risk, and human-checkpoint table |
-| `COST_AND_LATENCY.md` | API call, timing, and cost estimate |
-| `AI_DECISION_JOURNAL.md` | Record of important AI-assisted decisions |
-| `REFLECTION.md` | 400-word project reflection |
+The program generates three reports:
+
+- `clean_list.csv` – Valid registrations.
+- `problems.csv` – Registrations requiring correction or marked as duplicates.
+- `summary.txt` – Registration statistics and counts.
+
+## 2. Project Files
+
+| File                     | Description                                                                          |
+| ------------------------ | ------------------------------------------------------------------------------------ |
+| `main.py`                | Main program with Gemini API, fallback extraction, validation, and report generation |
+| `registrations.csv`      | Sample input containing 24 registrations                                             |
+| `SYSTEM_PROMPT.txt`      | System prompt with five roles and two examples                                       |
+| `eval_harness.py`        | Evaluation testing program                                                           |
+| `eval_results.txt`       | Evaluation results                                                                   |
+| `red_team_checks.py`     | Red-team testing program                                                             |
+| `red_team_results.md`    | Red-team test results                                                                |
+| `clean_list.csv`         | Valid registration records                                                           |
+| `problems.csv`           | Invalid and duplicate records                                                        |
+| `summary.txt`            | Summary of registration statistics                                                   |
+| `SPECIFICATION.md`       | Project specification                                                                |
+| `specification.pdf`      | PDF version of the specification                                                     |
+| `JUDGMENT_FRAMEWORK.md`  | Responsibility and decision framework                                                |
+| `COST_AND_LATENCY.md`    | API cost and processing-time analysis                                                |
+| `AI_DECISION_JOURNAL.md` | Record of AI-assisted decisions                                                      |
+| `REFLECTION.md`          | Project reflection                                                                   |
+| `GITHUB_STEPS.md`        | GitHub setup and commit instructions                                                 |
 
 ## 3. Requirements
 
-- Python 3.10 or later is recommended.
-- No third-party Python package is required. The program uses Python's standard library only.
-- Internet access and a Gemini API key are needed for live LLM extraction.
+- Python 3.10 or later
+- Gemini API key
+- Internet connection for live API extraction
+- No third-party Python packages required
 
-## 4. Set up the Gemini API key on Windows
+## 4. Gemini API Setup
 
-1. Open this project folder in File Explorer.
-2. Make a copy of `.env.example` and rename the copy to `.env`.
-3. Open `.env` in Notepad and paste your own key after `GEMINI_API_KEY=`.
-4. Save the file. Do not share `.env` or upload it to GitHub.
-5. The default model is `gemini-3.6-flash`. To use another model available to your API key, set `GEMINI_MODEL` in `.env` too.
-
-Example `.env` format (use your own key; never paste a real key into a public document):
+1. Create an API key using [Google AI Studio](https://aistudio.google.com/).
+2. Create a `.env` file in the project folder.
+3. Add your API key:
 
 ```text
-GEMINI_API_KEY=PASTE_YOUR_OWN_KEY_HERE
+GEMINI_API_KEY=YOUR_API_KEY
 GEMINI_MODEL=gemini-3.6-flash
 ```
 
-Create a key through [Google AI Studio](https://aistudio.google.com/). The program sends the key in the `x-goog-api-key` request header; it is not hard-coded in `main.py`.
+4. Save the file.
 
-## 5. Run the program
+The API key is loaded from `.env` and is not hard-coded in the Python program.
 
-Open PowerShell in this folder. One easy method is to open the folder in File Explorer, click the address bar, type `powershell`, and press Enter.
+## 5. Running the Program
 
-Run with the LLM (requires a valid `.env` key):
+Open PowerShell in the project folder.
+
+**Run with Gemini API:**
 
 ```powershell
 python main.py
 ```
 
-Run without an API call, using the local fallback extractor:
+**Run in offline mode:**
 
 ```powershell
 python main.py --offline
 ```
 
-Use a different input file or output folder:
+**Specify input and output folders:**
 
 ```powershell
 python main.py --input registrations.csv --output-dir reports
 ```
 
-The program creates or replaces `clean_list.csv`, `problems.csv`, and `summary.txt` in the chosen output folder.
+The program generates `clean_list.csv`, `problems.csv`, and `summary.txt` in the selected output folder.
 
-## 6. Run the tests
+## 6. Running Tests
+
+Run the evaluation harness:
 
 ```powershell
 python eval_harness.py
+```
+
+Run the red-team checks:
+
+```powershell
 python red_team_checks.py
 ```
 
-The evaluation harness checks five fixed parser outputs against expected status and cleaned phone values. The red-team script supplies intentionally unsafe mock LLM outputs to test the Python fact-check and duplicate logic. These tests do **not** claim that a live model has passed the tests. Before the showcase, run the same inputs with your real API key, inspect the returned JSON, and record the actual outputs.
+These scripts evaluate extraction accuracy, validation, fact-checking, and duplicate detection using predefined test cases.
 
-## 7. Important rules and human checkpoint
+## 7. Data Processing Rules
 
-- The LLM copies. Python checks, cleans, counts, and writes the reports.
-- A phone must contain ten digits after removing one leading `91` or `0`, and it must start with 6, 7, 8, or 9.
-- An email is lowercased only when it has exactly one `@`, no spaces, and a dot after the `@`. Missing suffixes are never completed.
-- Duplicates are detected using valid cleaned phone or email values. The first registration is retained; later matching registrations go to `problems.csv`.
-- The event team reviews all rows in `problems.csv` and contacts the affected people. The program never decides or edits someone's correct contact details.
+- The LLM extracts registration fields without correcting the original information.
+- Python verifies extracted phone numbers and email addresses against the original entries.
+- Phone numbers are cleaned by removing formatting, country code `91`, or a leading `0`.
+- Valid phone numbers must contain ten digits and start with 6, 7, 8, or 9.
+- Email addresses are converted to lowercase after validation.
+- Missing email suffixes are not automatically completed.
+- Year must be between 1 and 4.
+- Branches are checked against the predefined allowed list.
+- Duplicate registrations are identified using cleaned phone numbers or email addresses.
+- The first occurrence is retained, and subsequent duplicates are included in `problems.csv`.
 
-**Privacy note:** Registration names, phone numbers, and emails are personal data. Use dummy/sample data for practice. Before sending real registrations to an external API, obtain the required faculty/participant approval and follow the institution's data-handling rules. Check the provider's current data-use terms for the account tier you use.
+## 8. GitHub
 
-## 8. Suggested GitHub commit sequence
+Refer to `GITHUB_STEPS.md` for repository creation, commit sequence, and publishing instructions.
 
-See `GITHUB_STEPS.md` for the three meaningful commits and the steps to create and share your own repository. Confirm `.gitignore` before the first commit.
+
