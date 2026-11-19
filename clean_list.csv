@@ -1,0 +1,15 @@
+id,name,phone,email,year,branch
+R01,A,9840012345,Abc@gmail.com,2,CSE
+R02,B,9876543210,Abc@gmail.com,3,ECE
+R03,C,9123456789,Abc@gmail.com,1,IT
+R06,D,8877665544,Abc@gmail.com,2,AIDS
+R07,E,9845012345,Abc@gmail.com,1,MECH
+R08,F,7654321098,Abc@gmail.com,4,CIVIL
+R09,G,9123456780,Abc@gmail.com,3,EEE
+R11,H,9001122334,Abc@gmail.com,1,IT
+R12,I,9090980808,Abc@gmail.com,4,AIDS
+R13,J,8123456789,Abc@gmail.com,2,CSE
+R14,K,9345678901,Abc@gmail.com,3,MECH
+R16,K,6789012345,Abc@gmail.com,4,CIVIL
+R22,L,8899001122,Abc@gmail.com,1,AIDS
+R23,M,9567812345,Abc@gmail.com,2,CSE

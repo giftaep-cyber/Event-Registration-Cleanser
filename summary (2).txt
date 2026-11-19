@@ -1,0 +1,25 @@
+EVENT REGISTRATION CLEANER - SUMMARY
+Generated: 2026-11-10 14:10:27
+Total registrations: 24
+
+Counts by status:
+  valid: 14
+  needs_fix: 5
+  duplicate: 5
+
+Valid registrations by branch:
+  AIDS: 3
+  CIVIL: 2
+  CSE: 3
+  ECE: 1
+  EEE: 1
+  IT: 2
+  MECH: 2
+
+Valid registrations by year:
+  Year 1: 4
+  Year 2: 4
+  Year 3: 3
+  Year 4: 3
+
+Human checkpoint: the event team reviews problems.csv and contacts every affected person.

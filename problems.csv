@@ -1,0 +1,11 @@
+id,status,reasons,original_entry,parsed_name,parsed_phone,parsed_email,parsed_year,parsed_branch,cleaned_phone,cleaned_email,duplicate_of
+R04,needs_fix,Phone is missing or invalid,"Name: Meena S, phone 12345, email meena.s@gmail.com, final year CSE",Meena S,,meena.s@gmail.com,4,CSE,,meena.s@gmail.com,
+R05,duplicate,Duplicate of first registration R02,"Name: Ravi Kumar, ph 98765 43210, email ravi.kumar@gmail.com, 2nd yr CSE",Ravi Kumar,9876543210,ravi.kumar@gmail.com,2,CSE,9876543210,ravi.kumar@gmail.com,R02
+R10,needs_fix,Phone is missing or invalid,"Name: Farah S, mobile 99887 6655, email farah.s@gmail.com, 2nd year ECE",Farah S,,farah.s@gmail.com,2,ECE,,farah.s@gmail.com,
+R15,duplicate,Duplicate of first registration R08,"Name: Manoj T, ph 76543 21098, email manoj.t@gmail.com, 1st yr ECE",Manoj T,7654321098,manoj.t@gmail.com,1,ECE,7654321098,manoj.t@gmail.com,R08
+R17,needs_fix,Branch is missing or not in the allowed list,"Name: Vimal N, ph 93456 12345, email vimal.n@gmail.com, 2nd yr PHYSICS",Vimal N,9345612345,vimal.n@gmail.com,2,other,9345612345,vimal.n@gmail.com,
+R18,duplicate,Duplicate of first registration R02,"Name: Neha J, phone 98765 43210, email neha.j@gmail.com, II year CSE",Neha J,9876543210,neha.j@gmail.com,2,CSE,9876543210,neha.j@gmail.com,R02
+R19,needs_fix,Email is missing or invalid,"Name: Bala S, ph 81111 22222, email bala at gmail dot com, III yr EEE",Bala S,8111122222,,3,EEE,8111122222,,
+R20,needs_fix,Email is missing or invalid,"Name: Renu A, phone 70123 45678, email renu.a@gmail, final year IT",Renu A,7012345678,renu.a@gmail,4,IT,7012345678,,
+R21,duplicate,Duplicate of first registration R02,"Name: Ajay M, mobile 09876543210, email ajay.m@gmail.com, 3rd yr ECE",Ajay M,9876543210,ajay.m@gmail.com,3,ECE,9876543210,ajay.m@gmail.com,R02
+R24,duplicate,Duplicate of first registration R01,"Name: Priya K, mobile 9840012345, email priya.k@gmail.com, II year CSE",Priya K,9840012345,priya.k@gmail.com,2,CSE,9840012345,priya.k@gmail.com,R01
